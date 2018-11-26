@@ -1,3 +1,5 @@
+require('newrelic');
+
 const express = require('express');
 
 const path = require('path');
@@ -45,7 +47,7 @@ app.get('/:productSku/reviews', (req, res) => {
 });
 
 app.get('/:productSku/images', (req, res) => {
-  axios.get(`http://ec2-54-174-152-69.compute-1.amazonaws.com:3005/${ req.params.productSku }/images`)
+  axios.get(`http://localhost:3005/${req.params.productSku}/images`)
     .then(resp => res.status(200).send(resp.data))
     .catch(err => res.status(500).end(err.message));
 });
