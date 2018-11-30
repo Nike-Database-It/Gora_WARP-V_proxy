@@ -19,35 +19,37 @@ app.use(express.static(path.join(__dirname, './../node_modules')));
 app.get('/:productSku/similar', (req, res) => {
   axios.get(`http://ec2-54-219-165-96.us-west-1.compute.amazonaws.com:3001/${ req.params.productSku }/similar`)
     .then(resp => res.status(200).send(resp.data))
-    .catch(err => res.status(500).end(err.message));
+    .catch(err => {
+      console.log(err);
+      res.status(500).end(err.message);
+    });
 });
-
 // app.get('/:text/search', (req, res) => {
 //   axios.get(`http://ec2-54-245-41-15.us-west-2.compute.amazonaws.com:3002/:text/search`)
 //     .then(resp => res.status(200).send(resp.data))
 //     .catch(err => res.status(500).end(err.message));
 // })
 
-app.get('/:productSku/sizes', (req, res) => {
-  axios.get(`http://ec2-18-225-6-210.us-east-2.compute.amazonaws.com:3003/${ req.params.productSku }/sizes`)
-    .then(resp => res.status(200).send(resp.data))
-    .catch(err => res.status(500).end(err.message));
-});
+// app.get('/:productSku/sizes', (req, res) => {
+//   axios.get(`http://ec2-18-225-6-210.us-east-2.compute.amazonaws.com:3003/${ req.params.productSku }/sizes`)
+//     .then(resp => res.status(200).send(resp.data))
+//     .catch(err => res.status(500).end(err.message));
+// });
 
-app.get('/:productSku/descrip', (req, res) => {
-  axios.get(`http://ec2-18-225-6-210.us-east-2.compute.amazonaws.com:3003/${ req.params.productSku }/descrip`)
-    .then(resp => res.status(200).send(resp.data))
-    .catch(err => res.status(500).end(err.message));
-});
+// app.get('/:productSku/descrip', (req, res) => {
+//   axios.get(`http://ec2-18-225-6-210.us-east-2.compute.amazonaws.com:3003/${ req.params.productSku }/descrip`)
+//     .then(resp => res.status(200).send(resp.data))
+//     .catch(err => res.status(500).end(err.message));
+// });
 
 app.get('/:productSku/reviews', (req, res) => {
-  axios.get(`http://ec2-3-16-150-245.us-east-2.compute.amazonaws.com:3004/${ req.params.productSku }/reviews`)
+  axios.get(`http://ec2-54-241-129-105.us-west-1.compute.amazonaws.com:3004/${ req.params.productSku }/reviews`)
     .then(resp => res.status(200).send(resp.data))
     .catch(err => res.status(500).end(err.message));
 });
 
 app.get('/:productSku/images', (req, res) => {
-  axios.get(`http://localhost:3005/${req.params.productSku}/images`)
+  axios.get(`http://ec2-54-219-162-194.us-west-1.compute.amazonaws.com:3005/${req.params.productSku}/images`)
     .then(resp => res.status(200).send(resp.data))
     .catch(err => res.status(500).end(err.message));
 });
