@@ -61,7 +61,7 @@ app.get('/:productSku/colors', (req, res) => {
 });
 
 app.get('/:productSku/colors/:style', (req, res) => {
-  axios.get(`http://ec2-54-83-182-45.compute-1.amazonaws.com:3000/colors/${ req.params.style }`)
+  axios.get(`http://ec2-54-83-182-45.compute-1.amazonaws.com:3000/${ req.params.productSku }/colors/${ req.params.style }`)
     .then(resp => res.status(200).send(resp.data))
     .catch(err => res.status(500).end(err.message));
 });
